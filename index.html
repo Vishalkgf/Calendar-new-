@@ -6,56 +6,60 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>calender</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" type="image/x-icon" href="/web applications/calendar /planit.jpg">
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
-  <nav class="navbar">
+  <nav id="home" class="navbar">
     <i onclick="divtoggle('navbox')" class="fa fa-bars"></i>
-    <p> my calendar </p>
-    <input type="search" class="none"
-      placeholder="search">
-    <i class="fa fa-search search_i" onclick="divtoggle('search_box')"></i>
+    <p> plan it </p>
+    <input type="search" class="none" placeholder="search">
+    <i class="fa fa-search search_i"
+      onclick="divtoggle('search_box')"></i>
     <span>
       <i onclick="" class="fa fa-user-circle-o"></i>
       <p>login</p>
     </span>
   </nav>
- <div id="search_box" class="search_box none">
-   <nav class="nav">
-  <input id="search_input" type="search" onkeyup="search()" placeholder="search">
-  <i onclick="divtoggle('search_box')" class="fa fa-close"></i>
-   </nav>
-<div id="msgbox_container3" class="msgbox_container">
-  
-  
-  
-  
-  
+  <div id="search_box" class="search_box none">
+    <nav class="nav">
+      <input id="search_input" type="search" onkeyup="search()"
+        placeholder="search">
+      <i onclick="divtoggle('search_box')" class="fa fa-close"></i>
+    </nav>
+    <div id="msgbox_container3" class="msgbox_container">
+      
+      
+      
+      
+      
+    </div>
   </div>
- </div>
   <div class="navbox none" id="navbox">
     <div class="icons">
-        <i class="fa fa-user-circle-o"></i>
+      <i class="fa fa-user-circle-o"></i>
       <i onclick="divtoggle('navbox')" class="fa fa-close"></i>
     </div>
     <div onclick="divtoggle('mydetaview')">
-     <i class="fa fa-database"></i> <p>my deta </p>
-     <i class="fa fa-angle-right"></i>
-
+      <i class="fa fa-database"></i>
+      <p>my deta </p>
+      <i class="fa fa-angle-right"></i>
+      
     </div>
-    <div>
-     <i class="fa fa-adjust"></i><p>themes</p>
+    <div onclick="themes()">
+      <i class="fa fa-adjust"></i>
+      <p>themes</p>
       <i class="fa fa-toggle-off"></i>
     </div>
     <div>
       <i class="fa fa-language"></i>
       <p>language</p>
       <i class="fa fa-angle-right"></i>
-
+      
     </div>
-    <div>
+    <div onclick="divtoggle('settings_box')">
       <i class="fa fa-sun-o"></i>
       <p>setting</p>
       <i class="fa fa-angle-right"></i>
@@ -65,7 +69,7 @@
       <p>about</p>
       <i class="fa fa-angle-right"></i>
     </div>
-    <div>
+    <div onclick="deletemydeta()">
       <i class="fa fa-trash-o"></i>
       <p>delete my all deta</p>
       <i class="fa fa-angle-right"></i>
@@ -75,6 +79,7 @@
       <p>delete my account</p>
       <i class="fa fa-angle-right"></i>
     </div>
+    <h4>Calender - best calendar platform</h4>
   </div>
   <div id="mydetaview" class="mydeta_view_div none">
     <div class="head">
@@ -103,11 +108,10 @@
       </div>
     </div>
   </div>
-  <h1>Calender - best calendar platform</h1>
-  <p class="date_p"></p>
   <div class="calander" id="calander">
     <div class="change">
       <div class="date">
+        <i class="fa fa-calendar"></i>
         <p id="r_month">January</p>
         <p id="r_year">2025</p>
       </div>
@@ -117,13 +121,13 @@
       </div>
     </div>
     <div class="days">
-      <span>s</span>
-      <span>m</span>
-      <span>t</span>
-      <span>w</span>
-      <span>t</span>
-      <span>f</span>
-      <span>s</span>
+      <span>sun</span>
+      <span>man</span>
+      <span>tue</span>
+      <span>wed</span>
+      <span>the</span>
+      <span>fre</span>
+      <span>sut</span>
     </div>
     <div class="month" id="month">
     </div>
@@ -131,7 +135,7 @@
   <div id="not_tab" class="not_tab none">
     <nav>
       <i onclick="divtoggle('not_tab')" class="fa fa-arrow-left"></i>
-      <p>notebooks</p>
+      <p>note entry</p>
     </nav>
     <div class="type">
       <p onclick="inter_deta_change('days')">days</p>
@@ -142,6 +146,9 @@
       <input id="notebooks_date_time" type="date" class="none"
         value="">
       <select id="select_day" class="days">
+        <option value="7">
+          <p>Everyday</p>
+        </option>
         <option value="0">
           <p>Sunday</p>
         </option>
@@ -184,10 +191,12 @@
   </div>
   <div id="todayalertmsgcontener" class="todayalertmsgcontener">
     <div class="todayhead">
-      <i class="fa fa-arrow-left"></i>
-      <p>today</p>
+      <i onclick="select_date_change('back')"
+        class="fa fa-arrow-left"></i>
+      <p id="select_date">today</p>
       <i onclick="divtoggle('not_tab')" class="fa fa-plus"></i>
-      <i class="fa fa-arrow-right"></i>
+      <i onclick="select_date_change('next')"
+        class="fa fa-arrow-right"></i>
     </div>
     <div id="msgbox_container" class="msgbox_container">
       <div class="msgbox">
@@ -202,13 +211,57 @@
     </div>
     
   </div>
-  <div class="settings_box">
+  <div id="settings_box" class="settings_box none">
+    <nav class="nav">
+      <i onclick="divtoggle('settings_box')"
+        class="fa fa-arrow-left"></i>
+      <p>settings</p>
+    </nav>
+    <div>
+      <p>user id</p>
+    </div>
+    <div>
+      <p>user name</p>
+    </div>
+    <div>
+      <p>email id</p>
+    </div>
+    <div>
+      <p>password</p>
+    </div>
+    <div>
+      <p>language</p>
+      <p>English</p>
+    </div>
+    <div>
+      <p>my deta</p>
+    </div>
+    <div>
+      <p>about</p>
+    </div>
+    <div>
+      <p>login/logout</p>
+    </div>
+    <div>
+      <p style="color: #FF8E20">delete my deta </p>
+    </div>
+    <div>
+      <p style="color: red">my account deleted</p>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
     
   </div>
   <footer class="footer">
     <h4>Calender</h4>
     <div class="all_links">
-      <p>home</p>
+      <p onclick=")">home</p>
       <p onclick="divtoggle('search_box')">search</p>
       <p>theme <i class="fa fa-toggle-off"></i></p>
       <p>my all deta</p>
@@ -220,10 +273,11 @@
       <i class="fa fa-instagram"></i>
       <i class="fa fa-facebook-official"></i>
       <i class="fa fa-whatsapp"></i>
-    <i class="fa fa-google"></i>
+      <i class="fa fa-google"></i>
     </div>
   </footer>
- <i onclick="divtoggle('not_tab')" class="add_note_btn fa fa-plus"></i>
+  <i style="font-size: 40px" onclick="divtoggle('not_tab')"
+    class="add_note_btn fa fa-plus-circle"></i>
   <!---
   fa fa-android
   fa fa-angle-double-right
@@ -375,7 +429,6 @@ fa fa-trash
   
   
   --->
-  
   <script src="main.js"></script>
 </body>
 

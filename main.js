@@ -26,7 +26,6 @@ function local_connect() {
 local_connect()
 
 
-let date_p = document.getElementsByClassName("date_p")[0];
 let r_month = document.getElementById("r_month");
 let r_year = document.getElementById("r_year");
 const days7 = [
@@ -47,7 +46,7 @@ let month = new Date().getUTCMonth() + 1;
 let year = new Date().getFullYear()
 if (daydate < 9 || daydate == 9) { daydate = '0' + daydate }
 if (month < 9 || month == 9) { month = '0' + month }
-date_p.innerText = daydate + "/" + month + "/" + year;
+console.log(daydate + "/" + month + "/" + year);
 
 function update_month(mm, yyyy) {
   mm = mm - 1;
@@ -131,14 +130,19 @@ function forward() {
 
 let toddaycontener = document.querySelector(".todayalertmsgcontener")
 
-let daydeta
+let selected_date = { d: 24, m: 10, y: 2026 }
 
 function Createdaydeta(d, m, y) {
+  selected_date.d = d
+  selected_date.m = m
+  selected_date.y = y
   clear_msgbox_container()
   let day = new Date(y, m - 1, d).getDay();
   if (d < 10) {
     d = "0" + d;
   }
+  let date_p = document.getElementById("select_date");
+  date_p.innerText = "" + d + "/" + m + "/" + y + "";
   deta.forEach((e) => {
     if (e.date) {
       if (e.date.d == d) {
@@ -153,7 +157,7 @@ function Createdaydeta(d, m, y) {
   deta.forEach((e) => {
     if (e.days) {
       day = String(day);
-      if (e.days == day) {
+      if (e.days == day || e.days == '7') {
         create_msgbox(e.msg, 1, e.id)
       }
     }
@@ -212,11 +216,14 @@ function daylistening() {
       Createdaydeta(e.innerText, view_month, view_year);
     })
     e.addEventListener('dblclick', () => {
-      //divtoggle('not_tab');
-      // view_year= toString.apply(view_year)
-      //   view_month= toString.apply(view_month)
-      // console.log(view_year+'-'+view_month+'-'+e.innerText)
-      
+      divtoggle('not_tab');
+      //  view_year= toString.apply(view_year)
+      //     view_month= toString.apply(view_month)
+      //console.log(view_year+'-'+view_month+'-'+e.innerText)
+      inter_deta_change('date')
+      document.getElementById(
+          "notebooks_date_time").value = "" + view_year +
+        '-' + view_month + '-' + e.innerText + "";
     })
   })
 }
@@ -237,8 +244,11 @@ function notebooks(d_t_d) {
         alert('please type notes ');
         return
       } else {
-        deta.push({ days: select_day, msg: notebooks_msg,
-          id: note_id })
+        deta.push({
+          days: select_day,
+          msg: notebooks_msg,
+          id: note_id
+        })
         console.log(deta)
         update_deta()
         alert('set successfull')
@@ -336,6 +346,7 @@ function inter_deta_change(d_t_d) {
     select_day.classList.remove('none');
   }
 }
+inter_deta_change('days')
 
 function notebook_clear() {
   document.getElementById("notebooks_date_time").value = "";
@@ -429,17 +440,18 @@ function remove_note(note_id) {
     update_deta()
   }
 }
+
 function note_edit(note_id) {
   let a = confirm("edit this note");
-   if (a == true) {
-  let new_msg= prompt("type new msg");
-  if (!new_msg || new_msg=='') {
-    alert('blank not allow');
-    return
-  }
+  if (a == true) {
+    let new_msg = prompt("type new msg");
+    if (!new_msg || new_msg == '') {
+      alert('blank not allow');
+      return
+    }
     let id = deta.filter(deta => deta.id == note_id);
-  id[0].msg=new_msg
-  update_deta()
+    id[0].msg = new_msg
+    update_deta()
   }
 }
 //remove_note()
@@ -455,7 +467,6 @@ function get_random_id(length) {
   for (let i = 0; i < length; i++) {
     id += a[Math.floor(Math.random() * a.length)];
   }
-  console.log(id)
   return id
 }
 //get_random_id(5)
@@ -470,14 +481,102 @@ function search() {
   clear_msgbox_container(3)
   let q = document.getElementById('search_input').value;
   q = q.toLowerCase()
-  const filtered = deta.filter(r => r.msg.toLowerCase().includes(q) || r.date.d.toLowerCase().includes(q) || r.date.m.toLowerCase().includes(q) || r.date.y.toLowerCase().includes(q)
-  );
+  const filtered = deta.filter(r => r.msg.toLowerCase().includes(q))
   for (var i = 0; i < filtered.length; i++) {
     create_msgbox(filtered[i].msg, 3, filtered[i].id)
   }
-if (filtered.length==0) {
+  if (filtered.length == 0) {
     create_msgbox("कोई रिकॉर्ड नहीं मिला", 3);
-    console.log(q)
-}
+    // console.log(q)
+  }
 }
 //search()
+
+function select_date_change(back_next) {
+  let d = selected_date.d;
+  let m = selected_date.m;
+  let y = selected_date.y;
+  if (back_next == "back") {
+    if (d == 1) {
+      if (m == 1) {
+        m = 12;
+        y--;
+      } else {
+        m--;
+      }
+      d = new Date(y, m, 0).getDate();
+    } else {
+      d--;
+    }
+  }
+  if (back_next == "next") {
+    let dd = new Date(y, m, 0).getDate();
+    if (d == dd) {
+      if (m == 12) {
+        m = 1;
+        y++;
+      } else {
+        m++;
+      }
+      d = 1;
+    } else {
+      d++;
+    }
+  }
+  console.log(d, m, y)
+  Createdaydeta(d, m, y)
+}
+
+function deletemydeta() {
+  let yn = confirm('sure delete all deta')
+  if (yn) {
+    localStorage.clear();
+    deta = "";
+  }
+}
+
+let theme_deta = [
+{
+  name: "light",
+  bgc: "#FFFFFF",
+  bgchover: " #3A3A3A",
+  color: " #817BFF",
+  shadow: "#C9C9C985",
+  hover: "#BCBCBCDB"
+},
+{
+  name: "dark",
+  bgc: "#000000",
+  bgchover: " #FFFFFF",
+  color: " #FFB811",
+  shadow: "#C9C9C985",
+  hover: "#BCBCBCDB"
+},
+{
+  name: "dark2",
+  bgc: "#000000",
+  bgchover: "#3E82DEC7",
+  color: "#FFFFFF",
+  shadow: " #BDD9EE",
+  hover: "#77ADFF"
+}]
+
+let theme_index = 0;
+
+function themes() {
+  let length = theme_deta.length;
+  if (theme_index == length) {
+    theme_index = 0;
+  } else {
+    theme_index++;
+  }
+  let theme = theme_deta[theme_index];
+  document.documentElement.style.setProperty('--bgc', theme.bgc);
+  document.documentElement.style.setProperty('--bgchover', theme
+    .bgchover);
+  document.documentElement.style.setProperty('--color', theme.color);
+  document.documentElement.style.setProperty('--shadow', theme
+  .shadow);
+  document.documentElement.style.setProperty('--hover', theme.hover);
+  console.log(theme_index,lenth)
+}
