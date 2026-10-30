@@ -431,7 +431,7 @@ function myalldeta_view(type) {
     }
   })*/
 }
-
+  
 function remove_note(note_id) {
   let a = confirm("delete this note");
   if (a == true) {
