@@ -2,13 +2,15 @@
    margin: 0px;
    padding: 0px;
 }
-:root{
- --bgc : #000000;
- --bgchover: #3E82DEC7;
---color : #FFFFFF;
---shadow: #BDD9EE;
---hover: #77ADFF
+
+:root {
+   --bgc: #000000;
+   --bgchover: #3E82DEC7;
+   --color: #FFFFFF;
+   --shadow: #BDD9EE;
+   --hover: #77ADFF
 }
+
 body {
    max-width: 100vw;
    background-color: var(--bgc);
@@ -90,9 +92,11 @@ body {
    position: relative;
    box-shadow: 0 0 2px 1px var(--shadow);
 }
-.navbox div:hover{
+
+.navbox div:hover {
    background-color: var(--hover);
 }
+
 .navbox div :first-child {
    margin-left: 20px;
 }
@@ -195,9 +199,11 @@ body h4 {
    text-transform: capitalize;
    font-size: 12px;
 }
-.calander .days span:hover{
+
+.calander .days span:hover {
    color: var(--bgchover);
 }
+
 .calander .month {
    width: 100%;
    height: 100%;
@@ -374,7 +380,8 @@ body h4 {
    text-align: center;
    line-height: 50px;
 }
-.not_tab nav i:hover{
+
+.not_tab nav i:hover {
    background-color: var(--hover);
 }
 
@@ -455,9 +462,11 @@ body h4 {
    outline: none;
    border: 1px solid var(--color);
 }
-.not_tab div input:hover{
-      border: 2px solid var(--color);
+
+.not_tab div input:hover {
+   border: 2px solid var(--color);
 }
+
 .not_tab .days p {
    padding: 10px;
    border-radius: 50px;
@@ -517,10 +526,12 @@ body h4 {
 .mydeta_view_div .head i {
    margin-left: 0px;
 }
-.mydeta_view_div .head p{
+
+.mydeta_view_div .head p {
    text-transform: capitalize;
-      font-size: 20px;
+   font-size: 20px;
 }
+
 .mydeta_view_div .category {
    display: flex;
    gap: 10px;
@@ -540,9 +551,11 @@ body h4 {
    border-radius: 14px;
    border: 1px solid #D4D4D4;
 }
-.mydeta_view_div .category p:first-child{
+
+.mydeta_view_div .category p:first-child {
    margin-left: 10px;
 }
+
 .mydeta_view_div .category p:hover {
    background-color: var(--shadow);
 }
@@ -554,9 +567,10 @@ body h4 {
    top: 0px;
    left: 0px;
    z-index: 1;
-   color : var(--color);
+   color: var(--color);
    background-color: var(--bgc);
 }
+
 .settings_box .nav {
    height: 50px;
    display: flex;
@@ -586,9 +600,11 @@ body h4 {
    gap: 10px;
    border-bottom: 1px solid #23243559;
 }
-.settings_box div:hover{
+
+.settings_box div:hover {
    background-color: var(--hover);
 }
+
 .footer {
    width: 100%;
    height: fit-content;
@@ -598,6 +614,7 @@ body h4 {
 
 .footer h4 {
    font-size: 25px;
+   color: var(--bgchover);
    margin-left: 20px;
    letter-spacing: 2px;
    padding: 10px;
@@ -619,14 +636,33 @@ body h4 {
    margin-top: 20px;
    width: fit-content;
    display: flex;
-   gap: 10px;
+   gap: 10px; 
 }
 
 .add_note_btn {
    position: fixed;
    bottom: 50px;
    right: 50px;
+   width: 40px;
+   height: 40px;
+   border-radius: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border-radius: 100%;
+}
+
+.add_note_btn i {
+   color: var(--bgchover);
+   font-size: 50px;
+   background-color: var(--bgc);
+
+}
+
+.add_note_btn i:hover {
+   font-size: 55px;
    color: var(--color);
+   background-color: var(--bgc);
 }
 
 
@@ -647,13 +683,14 @@ body h4 {
       border: none;
       padding: 12px;
       font-size: 16px;
+      color: var(--color);
       border-radius: 10px;
    }
    
 }
 
 
-   
+
 
 
 .none,

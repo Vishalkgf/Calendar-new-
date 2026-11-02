@@ -10,19 +10,28 @@ var deta = [
     id: 'hsjsbv'
   },*/
 ]
+let theme_index = 0;
+let setting_deta = [
+  
+]
 
 function update_deta() {
-  localStorage.setItem('myappdeta', JSON.stringify(deta))
+  localStorage.setItem('myappdeta', JSON.stringify(deta));
+  localStorage.setItem('theme_index', theme_index)
 }
 
 function local_connect() {
   let deta_true = localStorage.getItem('myappdeta')
+  let theme_true = localStorage.getItem('theme_index')
   if (deta_true) {
     deta = JSON.parse(localStorage.getItem('myappdeta'))
     console.log("deta set setting", deta)
   }
+  if (theme_true) {
+    console.log(theme_true)
+    theme_index = Number(theme_true);
+  }
 }
-
 local_connect()
 
 
@@ -346,7 +355,6 @@ function inter_deta_change(d_t_d) {
     select_day.classList.remove('none');
   }
 }
-inter_deta_change('days')
 
 function notebook_clear() {
   document.getElementById("notebooks_date_time").value = "";
@@ -369,26 +377,6 @@ function divtoggle(divid) {
     a.classList.add("none")
   }
 }
-//divtoggle('not_tab');
-//document.getElementById("notebooks_date").setAttribute("value","2023-11-25");
-
-
-/*for (var i = 0; i < deta.length; i++) {
-  create_msgbox(deta[i].msg)
-}*/
-/*
-for (var i = 0; i < deta.length; i++) {
-  let p = document.createElement("p");
-  p.innerText = deta[i].date.d + "/" + deta[i].date.m + "/" + deta[i]
-    .date.y + "  " + deta[i].msg
-  document.getElementById('mydetaview').appendChild(p)
-}
-*/
-
-Createdaydeta(todaydate, month, year)
-
-/*let a= deta.find(deta=>deta.date.d=="15" && deta.date.m=="11");
-console.log(a)*/
 
 function datefilter(d, m, y) {
   // Tab to edit
@@ -397,8 +385,6 @@ function datefilter(d, m, y) {
     newarray.date.m == m && newarray.date.y == y);
   return newarray
 }
-
-//console.log(datefilter("05", "10", "2026").length)
 
 function myalldeta_view(type) {
   clear_msgbox_container(2)
@@ -419,19 +405,8 @@ function myalldeta_view(type) {
   for (var i = 0; i < a.length; i++) {
     create_msgbox(a[i].msg, 2, a[i].id);
   }
-  /*deta.forEach((e)=>{
-    if (e.date) {
-      create_msgbox("1"+e.msg,2)
-    }
-    if (e.time) {
-      create_msgbox("0"+e.msg, 2)
-    }
-    if (e.days) {
-      create_msgbox("3"+e.msg, 2)
-    }
-  })*/
 }
-  
+
 function remove_note(note_id) {
   let a = confirm("delete this note");
   if (a == true) {
@@ -561,14 +536,14 @@ let theme_deta = [
   hover: "#77ADFF"
 }]
 
-let theme_index = 0;
-
-function themes() {
+function themes(value) {
   let length = theme_deta.length;
-  if (theme_index == length) {
-    theme_index = 0;
-  } else {
-    theme_index++;
+    if (value == 'next') {
+    if (theme_index == length - 1) {
+      theme_index = 0;
+    } else {
+      theme_index++;
+    }
   }
   let theme = theme_deta[theme_index];
   document.documentElement.style.setProperty('--bgc', theme.bgc);
@@ -576,7 +551,20 @@ function themes() {
     .bgchover);
   document.documentElement.style.setProperty('--color', theme.color);
   document.documentElement.style.setProperty('--shadow', theme
-  .shadow);
+    .shadow);
   document.documentElement.style.setProperty('--hover', theme.hover);
-  console.log(theme_index,lenth)
+  console.log(theme.name)
+  update_deta()
+}
+
+
+
+
+
+
+document.onloadstart=loded_f();
+function loded_f() {
+Createdaydeta(todaydate, month, year)
+inter_deta_change('days')
+themes()
 }
