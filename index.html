@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>calender</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="shortcut icon" type="image/x-icon" href="logo.png">
+  <link rel="shortcut icon" type="image/x-icon" href="/logo.png">
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -14,7 +14,7 @@
 <body>
   <nav id="home" class="navbar">
     <i onclick="divtoggle('navbox')" class="fa fa-bars"></i>
-  <img src="/logo.png" alt="logo" />
+  <img src="/logo.png" />
     <p> plan it </p>
     <input type="search" class="none" placeholder="search">
     <i class="fa fa-search search_i"
@@ -75,7 +75,7 @@
       <p>delete my all deta</p>
       <i class="fa fa-angle-right"></i>
     </div>
-    <div>
+    <div onclick="deletemyaccount()">
       <i class="fa fa-trash-o"></i>
       <p>delete my account</p>
       <i class="fa fa-angle-right"></i>
@@ -218,16 +218,24 @@
       <p>settings</p>
     </nav>
     <div>
-      <p>user id</p>
+      <p>user id</p><p>Vishal9857</p>
     </div>
     <div>
-      <p>user name</p>
+      <p>user name</p><p>VishalAhirwar</p>
     </div>
     <div>
       <p>email id</p>
+       <p>vishalahirwarguna123@gmail.com</p>
     </div>
     <div>
       <p>password</p>
+      <p>026649</p>
+    </div>
+    <div>
+    <p>celender </p><p onclick="divtoggle('calander')"> hide  </p>
+    </div>
+    <div>
+    <p>day box </p><p onclick="divtoggle('todayalertmsgcontener')"> hide </p>
     </div>
     <div>
       <p>language</p>
@@ -235,6 +243,7 @@
     </div>
     <div>
       <p>my deta</p>
+      <p onclick="divtoggle('mydetaview') divtoggle('settings_box')">view</p>
     </div>
     <div>
       <p>about</p>
@@ -242,10 +251,10 @@
     <div>
       <p>login/logout</p>
     </div>
-    <div>
+    <div onclick="deletemydeta()">
       <p style="color: #FF8E20">delete my deta </p>
     </div>
-    <div>
+    <div onclick="deletemyaccount()">
       <p style="color: red">my account deleted</p>
     </div>
     
@@ -263,7 +272,7 @@
     <div class="all_links">
       <p onclick=")">home</p>
       <p onclick="divtoggle('search_box')">search</p>
-      <p>theme <i class="fa fa-toggle-off"></i></p>
+      <p onclick="themes('next')">theme</p>
       <p>my all deta</p>
       <p>setting</p>
       <p>login</p>
