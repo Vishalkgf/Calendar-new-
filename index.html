@@ -14,13 +14,13 @@
 <body>
   <nav id="home" class="navbar">
     <i onclick="divtoggle('navbox')" class="fa fa-bars"></i>
-  <img src="/logo.png" />
+    <img src="/logo.png" />
     <p> plan it </p>
     <input type="search" class="none" placeholder="search">
     <i class="fa fa-search search_i"
       onclick="divtoggle('search_box')"></i>
-    <span>
-      <i onclick="" class="fa fa-user-circle-o"></i>
+    <span onclick="divtoggle('login_div')">
+      <i onclick="" class=" fa fa-user-circle-o"></i>
       <p>login</p>
     </span>
   </nav>
@@ -39,10 +39,17 @@
     </div>
   </div>
   <div class="navbox none" id="navbox">
-    <div class="icons">
-      <i class="fa fa-user-circle-o"></i>
-      <i onclick="divtoggle('navbox')" class="fa fa-close"></i>
+    <div>
+      <i onclick="divtoggle('navbox')"
+        class="fa fa-close navbox_btn"></i>
     </div>
+    <span class="userdiv">
+      <img src="profile.jpg" class="logo_img">
+      <span class="user_details">
+        <p class="user_name">vishal ahirwar</p>
+        <p class="user_id">userid9857</p>
+      </span>
+    </span>
     <div onclick="divtoggle('mydetaview')">
       <i class="fa fa-database"></i>
       <p>my deta </p>
@@ -80,7 +87,6 @@
       <p>delete my account</p>
       <i class="fa fa-angle-right"></i>
     </div>
-    <h4>Calender - best calendar platform</h4>
   </div>
   <div id="mydetaview" class="mydeta_view_div none">
     <div class="head">
@@ -218,24 +224,28 @@
       <p>settings</p>
     </nav>
     <div>
-      <p>user id</p><p>Vishal9857</p>
+      <p>user id</p>
+      <p>Vishal9857</p>
     </div>
     <div>
-      <p>user name</p><p>VishalAhirwar</p>
+      <p>user name</p>
+      <p>VishalAhirwar</p>
     </div>
     <div>
       <p>email id</p>
-       <p>vishalahirwarguna123@gmail.com</p>
+      <p>vishalahirwarguna123@gmail.com</p>
     </div>
     <div>
       <p>password</p>
       <p>026649</p>
     </div>
     <div>
-    <p>celender </p><p onclick="divtoggle('calander')"> hide  </p>
+      <p>celender </p>
+      <p onclick="divtoggle('calander')"> hide </p>
     </div>
     <div>
-    <p>day box </p><p onclick="divtoggle('todayalertmsgcontener')"> hide </p>
+      <p>day box </p>
+      <p onclick="divtoggle('todayalertmsgcontener')"> hide </p>
     </div>
     <div>
       <p>language</p>
@@ -243,7 +253,8 @@
     </div>
     <div>
       <p>my deta</p>
-      <p onclick="divtoggle('mydetaview') divtoggle('settings_box')">view</p>
+      <p onclick="divtoggle('mydetaview') divtoggle('settings_box')">
+        view</p>
     </div>
     <div>
       <p>about</p>
@@ -257,15 +268,18 @@
     <div onclick="deletemyaccount()">
       <p style="color: red">my account deleted</p>
     </div>
-    
-    
-    
-    
-    
-    
-    
-    
-    
+  </div>
+  <div id="login_div" class="login_div">
+    <i class="close_btn fa fa-close"
+      onclick="divtoggle('login_div')"></i>
+    <p class="log_p">login</p>
+    <div class="log_input_div">
+      <input type="email" name="" id="login_email" value=""
+        placeholder="user or email id" required />
+      <input type="password" name="" id="login_password" value="" required
+        placeholder="password" />
+      <button class="submit_btn" type="submit" onclick="login()">submit</button>
+    </div>
   </div>
   <footer class="footer">
     <h4>Calender</h4>
@@ -285,8 +299,8 @@
       <i class="fa fa-google"></i>
     </div>
   </footer>
-  <div class="add_note_btn" onclick="divtoggle('not_tab')" >
-  <i class=" fa fa-plus-circle"></i>
+  <div class="add_note_btn" onclick="divtoggle('not_tab')">
+    <i class=" fa fa-plus-circle"></i>
   </div>
   <!---
   fa fa-android

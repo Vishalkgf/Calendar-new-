@@ -1,7 +1,13 @@
 console.log("calender");
-let user_account=[
-  {id : '123456' ,name: 'vishal ahirwar ', password:'224466', email_id:'vishalahirwarguna123@gmail.com', language:'hindi', theme:'dark2'},
+
+let login_account_deta ={ id: '1', name: 'vishal ahirwar ', password: '224466',email_id: 'vishalahirwarguna123@gmail.com', language: 'hindi',    theme: 'dark2'}
+
+let all_accounts=[
+  { id: '1', name: 'vishal ahirwar ', password: '626949',email_id: 'vishalahirwarguna123@gmail.com', language: 'hindi',    theme: 'dark2'},
+  { id: '2', name: 'dark web ', password: 'passwjhjk44',email_id: 'hgfhjvb527@gmail.com', language: 'english',    theme: 'dark2'},
+  { id: '3', name: 'gfakdh ', password: 'kjkje',email_id: 'kj;rekoitu ', language: 'hindi',    theme: 'dark2'},
 ]
+
 var deta = [
   /*{
     date: { d: 01, m: 10, y: 2026 },
@@ -12,9 +18,9 @@ var deta = [
     id: 'hsjsbv'
   },*/
 ]
- 
-let language=[
-  {name:"hindi"}
+
+let language = [
+  { name: "hindi" }
 ]
 let theme_index = 0;
 
@@ -164,7 +170,7 @@ function Createdaydeta(d, m, y) {
       if (e.date.d == d) {
         if (e.date.m == m) {
           if (e.date.y == y) {
-            create_msgbox(e.msg, 1, e.id,'date')
+            create_msgbox(e.msg, 1, e.id, 'date')
           }
         }
       }
@@ -174,7 +180,7 @@ function Createdaydeta(d, m, y) {
     if (e.days) {
       day = String(day);
       if (e.days == day || e.days == '7') {
-        create_msgbox(e.msg, 1, e.id,'day')
+        create_msgbox(e.msg, 1, e.id, 'day')
       }
     }
   })
@@ -182,16 +188,16 @@ function Createdaydeta(d, m, y) {
 
 
 
-function create_msgbox(msg, div_index, note_id,catagary) {
+function create_msgbox(msg, div_index, note_id, catagary) {
   let msgbox_container = document.getElementById("msgbox_container")
   let div = document.createElement("div")
   div.classList.add("msgbox")
   let type = document.createElement("div");
   type.classList.add('type');
-  type.innerText='note';
-if (catagary) {
-  type.innerText=catagary;
-}  
+  type.innerText = 'note';
+  if (catagary) {
+    type.innerText = catagary;
+  }
   let msg_p = document.createElement("p")
   msg_p.innerText = msg;
   let div2 = document.createElement("div");
@@ -203,7 +209,7 @@ if (catagary) {
   i2.setAttribute('onclick', "remove_note('" + note_id + "')");
   i.setAttribute('onclick', "note_edit('" + note_id + "')");
   div2.append(i, i2)
-  div.append(type,msg_p, div2)
+  div.append(type, msg_p, div2)
   msgbox_container.append(div)
   if (div_index == 2) {
     msgbox_container = document.getElementById("msgbox_container2")
@@ -243,16 +249,16 @@ function daylistening() {
       //     view_month= toString.apply(view_month)
       //console.log(view_year+'-'+view_month+'-'+e.innerText)
       inter_deta_change('date')
-      let dd=e.innerText;
-      if (e.innerText<10) {
-        dd="0"+e.innerText;
+      let dd = e.innerText;
+      if (e.innerText < 10) {
+        dd = "0" + e.innerText;
       }
       console.log(dd)
-      let date="" + view_year +
-  '-' + view_month + '-' + dd + "";
+      let date = "" + view_year +
+        '-' + view_month + '-' + dd + "";
       document.getElementById(
-          "notebooks_date_time").value = date;
-        
+        "notebooks_date_time").value = date;
+      
     })
   })
 }
@@ -386,7 +392,7 @@ function notebook_clear() {
 }
 
 
-function divtoggle(divid,openYclose) {
+function divtoggle(divid, openYclose) {
   let a = document.getElementById(divid)
   let decide = " ";
   for (var i = 0; i < a.classList.length; i++) {
@@ -394,11 +400,11 @@ function divtoggle(divid,openYclose) {
       decide = "none";
     }
   }
-  if (openYclose=='open') {
-    decide="none"
+  if (openYclose == 'open') {
+    decide = "none"
   }
-  if (openYclose=='close') {
-    decide=" "
+  if (openYclose == 'close') {
+    decide = " "
   }
   if (decide == "none") {
     a.classList.remove("none")
@@ -422,22 +428,22 @@ function myalldeta_view(type) {
   let catagary
   if (type == 'all') {
     a = deta.filter(deta => deta);
-    catagary='all';
+    catagary = 'all';
   }
   if (type == 'date') {
     a = deta.filter(deta => deta.date)
-    catagary='date';
+    catagary = 'date';
   }
   if (type == 'time') {
     a = deta.filter(deta => deta.time)
-  catagary='time';
+    catagary = 'time';
   }
   if (type == 'days') {
     a = deta.filter(deta => deta.days)
-  catagary='day';
+    catagary = 'day';
   }
   for (var i = 0; i < a.length; i++) {
-    create_msgbox(a[i].msg, 2, a[i].id,catagary);
+    create_msgbox(a[i].msg, 2, a[i].id, catagary);
   }
 }
 
@@ -492,8 +498,8 @@ function search() {
   q = q.toLowerCase()
   const filtered = deta.filter(r => r.msg.toLowerCase().includes(q))
   for (var i = 0; i < filtered.length; i++) {
-    let type= filtered[i].catagary;
-    create_msgbox(filtered[i].msg, 3, filtered[i].id,type)
+    let type = filtered[i].catagary;
+    create_msgbox(filtered[i].msg, 3, filtered[i].id, type)
   }
   if (filtered.length == 0) {
     create_msgbox("कोई रिकॉर्ड नहीं मिला", 3);
@@ -544,6 +550,7 @@ function deletemydeta() {
     deta = "";
   }
 }
+
 function deletemyaccount() {
   let yn = confirm('sure delete account')
   if (yn) {
@@ -580,7 +587,7 @@ let theme_deta = [
 
 function themes(value) {
   let length = theme_deta.length;
-    if (value == 'next') {
+  if (value == 'next') {
     if (theme_index == length - 1) {
       theme_index = 0;
     } else {
@@ -604,13 +611,29 @@ function themes(value) {
 
 
 
-document.onloadstart=loded_f();
+document.onloadstart = loded_f();
+
 function loded_f() {
-Createdaydeta(todaydate, month, year)
-inter_deta_change('days')
-themes()
+  Createdaydeta(todaydate, month, year)
+  inter_deta_change('days')
+  themes()
 }
+localStorage.setItem('user_id', '123456')
+localStorage.setItem('user_password', '123456')
+localStorage.setItem('user_email', '123456')
 
 function check_login() {
-  
+  let check_id = localStorage.getItem('user_id');
+  if (check_id) {
+    
+  }
+  console.log(check_id)
+}
+check_login()
+//divtoggle('navbox')
+
+function login(){
+  let email = document.getElementById('login_email').value;
+  let password = document.getElementById('login_password').value;
+  console.log(email,password)
 }
